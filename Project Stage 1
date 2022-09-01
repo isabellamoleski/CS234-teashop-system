@@ -1,0 +1,24 @@
+1.
+ Lacie Harris
+Isabella Moleski
+Mario Soto
+2. 
+Tea Shop management system 
+3.
+Financial system: Includes the overall amount of money the tea shop has considering data from the sales system,
+as well asthe expenditures from buying new products, repairs, and employee payroll by data of inventory, 
+employee, and client’s system.
+
+Sales system: Check within the inventory system if product is available and how much money is earned with the sales
+of product. 
+
+-Inventory system: products in stock, amount (inheritance from sales system, subtract when items are sold) 
+and type (allows user to edit inventory, update it with new shipments etc.)
+
+-Employee system: track performance (esp. sales) with reports showing performance over time,
+payroll, maintenance/repair tickets (assign requests), assign and track deliveries
+-Client system: request shipments, track shipments, request repairs
+
+User Scenario: Manager monthly check in ensuring nothing wrong with the system. Checking performance
+of employee’s by selecting the employee system. With the names of different employee’s appearing. 
+Selecting a name to check on that employee’s performance for the month.
