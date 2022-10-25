@@ -1,0 +1,47 @@
+
+public class Employee {
+    private String name;
+    private int age;
+    private double wage;
+    private double timeWorked;
+    // Constructors
+    Employee(String name, int age){
+        this.name = name;
+        this.age = age;
+    }
+    Employee(String name, int age, double wage){
+        this.name = name;
+        this.age = age;
+        this.wage = wage;
+    }
+    // Get
+    public String getName(){
+        return name;
+    }
+    public int getAge(){
+        return age;
+    }
+    public double getWage(){
+        return wage;
+    }
+    // Set
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setAge(int age){
+        this.age = age;
+    }
+    public void setWage(double wage){
+        this.wage = wage;
+    }
+        public double getPay(int timeWorked)
+   {
+      double pay = timeWorked * wage;
+      if (timeWorked > 40)
+      {
+         // Add overtime
+         pay = pay + ((timeWorked - 40) * 0.5) * wage;
+      }
+      return pay;
+    }
+}
