@@ -2,14 +2,13 @@
 import java.util.ArrayList;
 
 public class Manager extends Employee {
+    //Variable definition
     ArrayList<Employee> manages = new ArrayList<>();
     private double expenses;
 
-// constructor initializes list of Employees
-public Manager(String name,int age, double wage, double expenses){
-    super(name, age, wage);
-    expenses = expenses;
-}
+ public Manager(Employee aEmployee){
+        this.setWage(19.00);
+    }
 public void addEmployee(Employee aEmployee){
     manages.add(aEmployee);
 }
@@ -22,5 +21,14 @@ public double getExpenses() {
 }
 public void setExpenses(double expenses){
     this.expenses = expenses;
+}
+public void giveRaise(Employee aEmployee){
+    if(manages.contains(aEmployee)){
+        double currentpay = aEmployee.getWage();
+        aEmployee.setWage(currentpay+1.50);
+    }
+}
+public void getEmployees(){
+    System.out.println(manages);
 }
 }
