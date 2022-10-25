@@ -1,0 +1,26 @@
+
+import java.util.ArrayList;
+
+public class Manager extends Employee {
+    ArrayList<Employee> manages = new ArrayList<>();
+    private double expenses;
+
+// constructor initializes list of Employees
+public Manager(String name,int age, double wage, double expenses){
+    super(name, age, wage);
+    expenses = expenses;
+}
+public void addEmployee(Employee aEmployee){
+    manages.add(aEmployee);
+}
+public void removeEmployee(Employee aEmployee){
+    manages.remove(aEmployee);
+}
+public double getExpenses() {
+    return expenses;
+    
+}
+public void setExpenses(double expenses){
+    this.expenses = expenses;
+}
+}
