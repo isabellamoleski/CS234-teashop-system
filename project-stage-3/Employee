@@ -1,18 +1,28 @@
 
 public class Employee {
+    //variable definition
     private String name;
     private int age;
     private double wage;
     private double timeWorked;
     // Constructors
-    Employee(String name, int age){
+    public Employee(){
+        name = " ";
+        age = 0;
+        wage = 15;
+        timeWorked = 0;
+    }
+    public Employee(String name, int age){
         this.name = name;
         this.age = age;
+        wage = 15;
+        timeWorked = 0;
     }
-    Employee(String name, int age, double wage){
+    public Employee(String name, int age, double wage){
         this.name = name;
         this.age = age;
         this.wage = wage;
+        timeWorked = 0;
     }
     // Get
     public String getName(){
@@ -24,6 +34,9 @@ public class Employee {
     public double getWage(){
         return wage;
     }
+    public double getTimeWorked(double timeWorked){
+        return timeWorked;
+    }
     // Set
     public void setName(String name){
         this.name = name;
@@ -33,6 +46,9 @@ public class Employee {
     }
     public void setWage(double wage){
         this.wage = wage;
+    }
+    public void setTimeWorked(double timeWorked){
+        this.timeWorked = timeWorked;
     }
         public double getPay(int timeWorked)
    {
