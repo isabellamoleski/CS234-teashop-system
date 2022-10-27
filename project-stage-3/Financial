@@ -9,12 +9,11 @@ public class Financial {
         
     }
     //getter
-    public double getTotalProfit(ArrayList<Sales> sales, boolean b){
+    public double getTotalProfit(ArrayList<Sale> sales, boolean b){
         Sales.equals(sales);
-        boolean isMember = b;
         for(int i = 0; i<Sales.size();i++){
             Sale sale_i = Sales.get(i);
-            total =+ sale_i.getTotalCost(isMember);
+            total =+ sale_i.getTotalCost(b);
         }
         total = 0;
         return total;
