@@ -1,4 +1,3 @@
-
 public class Employee {
     //variable definition
     private String name;
@@ -50,7 +49,7 @@ public class Employee {
     public void setTimeWorked(double timeWorked){
         this.timeWorked = timeWorked;
     }
-        public double getPay(int timeWorked)
+        public double getPay()
    {
       double pay = timeWorked * wage;
       if (timeWorked > 40)
