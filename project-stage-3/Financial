@@ -19,7 +19,7 @@ public class Financial {
         Pay.equals(Pay);
         for(int i = 0; i<Pay.size();i++){
             Employee aPay = Pay.get(i);
-            int employee_timeWorked = aPay.getTimeWorked();
+            double employee_timeWorked = aPay.getTimeWorked();
             totalExpenses =+ aPay.getPay(employee_timeWorked);
             
         }
