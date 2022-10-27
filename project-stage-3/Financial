@@ -14,7 +14,7 @@ public class Financial {
         total = 0;
     }
     public double getTotalExpenses(){
-        totalExpenses = 0;
         return totalExpenses;
+        totalExpenses = 0;
     }
 }
