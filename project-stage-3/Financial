@@ -9,9 +9,9 @@ public class Financial {
         
     }
     //getter
-    public double getTotalProfit(Employee pay, Sale, Customer){
-        total = 0;
+    public double getTotalProfit(Employee pay, Sale s, Customer c){
         return total;
+        total = 0;
     }
     public double getTotalExpenses(){
         totalExpenses = 0;
