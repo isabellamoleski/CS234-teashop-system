@@ -33,7 +33,7 @@ public class Employee {
     public double getWage(){
         return wage;
     }
-    public double getTimeWorked(double timeWorked){
+    public double getTimeWorked(){
         return timeWorked;
     }
     // Set
@@ -46,7 +46,7 @@ public class Employee {
     public void setWage(double wage){
         this.wage = wage;
     }
-    public void setTimeWorked(double timeWorked){
+    public void setTimeWorked(){
         this.timeWorked = timeWorked;
     }
         public double getPay()
