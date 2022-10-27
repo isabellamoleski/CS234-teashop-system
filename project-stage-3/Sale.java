@@ -14,14 +14,14 @@ public class Sale {
         order.remove(i);
     }
     //get total cost of sale
-    public double getTotalCost(Customer c){
+    public double getTotalCost(boolean b){
         double totalCost = 0;
         for (int i = 0; i<order.size();i++){
                    //get cost of all items in order, add them to total
                    Item item_i = order.get(i); 
                    totalCost =+ item_i.getCost(); 
                 }
-        if (c.isMember()){
+        if (b==true){
             return totalCost*.95;
         }
         else{
