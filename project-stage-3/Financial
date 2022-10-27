@@ -1,0 +1,19 @@
+public class Financial {
+    ArrayList<Sale> Sales;
+    ArrayList<Employee> pay;
+    private double total;
+    private double totalExpenses;
+    // Constructor
+    public Financial(){
+        
+    }
+    //getter
+    public double getTotalProfit(Employee pay, Sale, Customer){
+        total = 0;
+        return total;
+    }
+    public double getTotalExpenses(){
+        totalExpenses = 0;
+        return totalExpenses;
+    }
+}
