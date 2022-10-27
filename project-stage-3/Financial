@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 public class Financial {
+    ArrayList<Sale> Sales;
     ArrayList<Employee> Pay;
-    private double total = 0;
+    private double total;
     private double totalExpenses;
     // Constructor
     public Financial(){
@@ -9,10 +10,12 @@ public class Financial {
     }
     //getter
     public double getTotalProfit(ArrayList<Sale> sales, boolean b){
-        for(int i = 0; i<sales.size();i++){
-            Sale sale_i = sales.get(i);
+        Sales.equals(sales);
+        for(int i = 0; i<Sales.size();i++){
+            Sale sale_i = Sales.get(i);
             total =+ sale_i.getTotalCost(b);
         }
+        total = 0;
         return total;
     }
     public double getTotalExpenses(ArrayList<Employee> Pay){
@@ -20,13 +23,11 @@ public class Financial {
         for(int i = 0; i<Pay.size();i++){
             Employee aPay = Pay.get(i);
             double employee_timeWorked = aPay.getTimeWorked();
-            totalExpenses =+ aPay.getPay(employee_timeWorked);
+            totalExpenses =+ aPay.getPay();
             
         }
         totalExpenses = 0;
         return totalExpenses;
     }
 }
-
-
    
