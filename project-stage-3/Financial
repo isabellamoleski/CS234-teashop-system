@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class Financial {
     ArrayList<Sale> Sales;
-    ArrayList<Employee> pay;
+    ArrayList<Employee> Pay;
     private double total;
     private double totalExpenses;
     // Constructor
@@ -9,7 +9,13 @@ public class Financial {
         
     }
     //getter
-    public double getTotalProfit(Employee pay, Sale s, Customer c){
+    public double getTotalProfit(ArrayList<Sales> sales, boolean b){
+        Sales.equals(sales);
+        boolean isMember = b;
+        for(int i = 0; i<Sales.size();i++){
+            Sale sale_i = Sales.get(i);
+            total =+ sale_i.getTotalCost(isMember);
+        }
         total = 0;
         return total;
     }
