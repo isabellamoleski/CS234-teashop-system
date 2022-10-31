@@ -1,7 +1,16 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 public class Menuu {
-
+    private static ArrayList<Customer> customers = new ArrayList<>();
     public static void main(String[] args) {
+        //dummy customer info
+        Customer mary = new Customer("Mary", 0001, false);
+        customers.add(mary);
+        Customer joseph = new Customer("Joseph", 0002, true);
+        customers.add(joseph);
+        Customer jose = new Customer("Jose", 2341, true);
+        customers.add(jose);
+        //call main menu
         Menu();
     }
     public static void Menu(){
@@ -46,25 +55,133 @@ public class Menuu {
         Scanner scan = new Scanner(System.in);
         int option = scan.nextInt();
         switch(option){
-            case 1:
+            case 1: //add customer
+                System.out.println("Enter the customer's name: ");
+                String customerName = scan.next();
+                System.out.println("Enter the customer's ID number: ");
+                int customerID = scan.nextInt();
+                System.out.println("Is this customer a member? (true/false): ");
+                boolean isMember = scan.nextBoolean();
+                Customer newC = new Customer(customerName,customerID,isMember);
+                customers.add(newC);
+                CustomerMenu();
+                break;
                 
+            case 2: //remove customer
+                System.out.print("Enter the customer's name: ");
+                String removeThisOne = scan.next();
+                //found = customer exists
+                boolean found = false;
+                //iterate through array, see if the employee name the user entered exists
+                for (int i = 0; i<customers.size();i++){
+                   //variables to get specific information about the Course at that index
+                   Customer customer_i = customers.get(i); 
+                   String Ename = customer_i.getName(); 
+                       if (removeThisOne.equals(Ename)){ //if employee is found, remove
+                           found = true;
+                           customers.remove(i);
+                       }
+                }
+                if (found == false){ //if no match is found, let the user know
+                    System.out.println("The Customer "+removeThisOne+" does not exist.");
+                }
+                else{
+                    System.out.println("The Customer " + removeThisOne+ " has been successfully removed.");
+                }
                 CustomerMenu();
                 break;
-            case 2: 
+                
+            case 3: //modify customer
+                System.out.print("Enter the customer's name: ");
+                String modifyThisOne = scan.next();
+                //found = customer exists
+                boolean Modfound = false;
+                //iterate through array, see if the employee name the user entered exists
+                for (int i = 0; i<customers.size();i++){
+                   //variables to get specific information about the Course at that index
+                   Customer customer_i = customers.get(i); 
+                   String Ename = customer_i.getName(); 
+                       if (modifyThisOne.equals(Ename)){ //if employee is found, remove
+                           Modfound = true;
+                           System.out.println("Enter an updated name: ");
+                           String nName = scan.next();
+                           customer_i.setName(nName);
+                           System.out.println("Enter an updated ID: ");
+                           int newID = scan.nextInt();
+                           customer_i.setID(newID);
+                           if (customer_i.isMember()){
+                               System.out.println("Would you like to cancel membership? (y/n)");
+                               char yn = scan.next().charAt(0);
+                               if (yn == 'y'){
+                                   customer_i.cancelMembership();
+                               }
+                               else if(yn == 'n'){
+                                   System.out.println("Membership for "+ modifyThisOne+ " will continue");
+                               }
+                               else{
+                                   System.out.println("Invalid character entered: "+yn);
+                               }
+                           }
+                           else if(!customer_i.isMember()){
+                               System.out.println("Would you like to buy membership? (y/n)");
+                               char yn = scan.next().charAt(0);
+                               if (yn == 'y'){
+                                   customer_i.buyMembership();
+                               }
+                               else if(yn == 'n'){
+                                   System.out.println(modifyThisOne+ " is not a member.");
+                               }
+                               else{
+                                   System.out.println("Invalid character entered: "+yn);
+                               }
+                           }
+                       }
+                }
+                if (Modfound == false){ //if no match is found, let the user know
+                    System.out.println("The Customer "+modifyThisOne+" does not exist.");
+                }
+                else{
+                    System.out.println("The customer " + modifyThisOne + "has been successfully modified.");
+                }
                 CustomerMenu();
                 break;
-            case 3: 
+                
+            case 4: //print customer info
+                System.out.print("Enter the customer's name: ");
+                String printThisOne = scan.next();
+                //found = customer exists
+                boolean printfound = false;
+                //iterate through array, see if the employee name the user entered exists
+                for (int i = 0; i<customers.size();i++){
+                   //variables to get specific information about the Course at that index
+                   Customer customer_i = customers.get(i); 
+                   String Ename = customer_i.getName(); 
+                       if (printThisOne.equals(Ename)){ //if employee is found, remove
+                           printfound = true;
+                           System.out.println("The customer's name is: "+customer_i.getName());
+                           System.out.println("The customer's ID is: "+customer_i.getID());
+                           if (customer_i.isMember()){
+                               System.out.println("The customer is a member.");
+                           }
+                           else{
+                               System.out.println("The customer is not a member.");
+                           }
+                       }
+                }
+                if (printfound == false){ //if no match is found, let the user know
+                    System.out.println("The Customer "+printThisOne+" does not exist.");
+                }
                 CustomerMenu();
                 break;
-            case 4: 
-                CustomerMenu();
-                break;
+                
             case 5: 
                 Menu();
                 break;
+                
             case 6: 
                 System.out.println("Bye.");
                 break;
+                
             default: 
                 System.out.println("Please enter a valid menu option: ");
                 CustomerMenu();
