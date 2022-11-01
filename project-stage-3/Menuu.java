@@ -1,7 +1,11 @@
 import java.util.Scanner;
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.ListIterator;
 public class Menuu {
-    private static ArrayList<Customer> customers = new ArrayList<>();
+    private static LinkedList<Customer> customers = new LinkedList<>();
+    private static LinkedList<Item> items = new LinkedList<>();
+    private static Sale newSale = new Sale();
+    
     public static void main(String[] args) {
         //dummy customer info
         Customer mary = new Customer("Mary", 0001, false);
@@ -10,9 +14,21 @@ public class Menuu {
         customers.add(joseph);
         Customer jose = new Customer("Jose", 2341, true);
         customers.add(jose);
+        //dummy item info
+        Item smallTea = new Item("Small_Tea", 2.00, 0123);
+        items.add(smallTea);
+        Item medTea = new Item("Medium_Tea", 2.50, 0124);
+        items.add(medTea);
+        Item largeTea = new Item("Large_Tea", 3.00, 0125);
+        items.add(largeTea);
+        Item sugarPack = new Item("Sugar", 0.10, 0211);
+        items.add(sugarPack);
+        Item milk = new Item("Milk", 0.20, 0212);
+        items.add(milk);
         //call main menu
         Menu();
     }
+    
     public static void Menu(){
         System.out.println("---------------------\nTea Shop: Main Menu \n---------------------");
         System.out.println("Select a menu option: \n1. Employees\n2. Managers\n3. Customers\n4. New Sale \n5. Print Reports \n6. Items \n7. Quit" );
@@ -36,7 +52,7 @@ public class Menuu {
                 //ReportsMenu
                 break;
             case 6: 
-                //ItemsMenu
+                ItemsMenu();
                 break;
             case 7: 
                 System.out.println("Bye");
@@ -54,6 +70,7 @@ public class Menuu {
         System.out.print("Enter your selection: ");
         Scanner scan = new Scanner(System.in);
         int option = scan.nextInt();
+        ListIterator<Customer> cIter = customers.listIterator();
         switch(option){
             case 1: //add customer
                 System.out.println("Enter the customer's name: ");
@@ -72,14 +89,13 @@ public class Menuu {
                 String removeThisOne = scan.next();
                 //found = customer exists
                 boolean found = false;
-                //iterate through array, see if the customer name the user entered exists
-                for (int i = 0; i<customers.size();i++){
-                   //variables to get specific information about the customer at that index
-                   Customer customer_i = customers.get(i); 
+                //iterate through array, see if the employee name the user entered exists
+                while (cIter.hasNext()){
+                   Customer customer_i = cIter.next(); 
                    String Ename = customer_i.getName(); 
-                       if (removeThisOne.equals(Ename)){ //if customer is found, remove
+                       if (removeThisOne.equals(Ename)){ //if employee is found, remove
                            found = true;
-                           customers.remove(i);
+                           cIter.remove();
                        }
                 }
                 if (found == false){ //if no match is found, let the user know
@@ -97,11 +113,11 @@ public class Menuu {
                 //found = customer exists
                 boolean Modfound = false;
                 //iterate through array, see if the customer name the user entered exists
-                for (int i = 0; i<customers.size();i++){
-                   //variables to get specific information about the customer at that index
-                   Customer customer_i = customers.get(i); 
+                while (cIter.hasNext()){
+                   //variables to get specific information about the Course at that index
+                   Customer customer_i = cIter.next(); 
                    String Ename = customer_i.getName(); 
-                       if (modifyThisOne.equals(Ename)){ //if customer is found, modify
+                       if (modifyThisOne.equals(Ename)){ //if employee is found, remove
                            Modfound = true;
                            System.out.println("Enter an updated name: ");
                            String nName = scan.next();
@@ -112,27 +128,19 @@ public class Menuu {
                            if (customer_i.isMember()){
                                System.out.println("Would you like to cancel membership? (y/n)");
                                char yn = scan.next().charAt(0);
-                               if (yn == 'y'){
-                                   customer_i.cancelMembership();
-                               }
-                               else if(yn == 'n'){
-                                   System.out.println("Membership for "+ modifyThisOne+ " will continue");
-                               }
-                               else{
-                                   System.out.println("Invalid character entered: "+yn);
+                               switch (yn) {
+                                   case 'y' -> customer_i.cancelMembership();
+                                   case 'n' -> System.out.println("Membership for "+ modifyThisOne+ " will continue");
+                                   default -> System.out.println("Invalid character entered: "+yn);
                                }
                            }
                            else if(!customer_i.isMember()){
                                System.out.println("Would you like to buy membership? (y/n)");
                                char yn = scan.next().charAt(0);
-                               if (yn == 'y'){
-                                   customer_i.buyMembership();
-                               }
-                               else if(yn == 'n'){
-                                   System.out.println(modifyThisOne+ " is not a member.");
-                               }
-                               else{
-                                   System.out.println("Invalid character entered: "+yn);
+                               switch (yn) {
+                                   case 'y' -> customer_i.buyMembership();
+                                   case 'n' -> System.out.println(modifyThisOne+ " is not a member.");
+                                   default -> System.out.println("Invalid character entered: "+yn);
                                }
                            }
                        }
@@ -151,12 +159,12 @@ public class Menuu {
                 String printThisOne = scan.next();
                 //found = customer exists
                 boolean printfound = false;
-                //iterate through array, see if the customer name the user entered exists
-                for (int i = 0; i<customers.size();i++){
-                   //variables to get specific information about the customer at that index
-                   Customer customer_i = customers.get(i); 
+                //iterate through array, see if the employee name the user entered exists
+                while (cIter.hasNext()){
+                   //variables to get specific information about the Course at that index
+                   Customer customer_i = cIter.next();  
                    String Ename = customer_i.getName(); 
-                       if (printThisOne.equals(Ename)){ //if customer is found, print
+                       if (printThisOne.equals(Ename)){ //if employee is found, remove
                            printfound = true;
                            System.out.println("The customer's name is: "+customer_i.getName());
                            System.out.println("The customer's ID is: "+customer_i.getID());
@@ -188,29 +196,188 @@ public class Menuu {
         }
     }
     
+    public static void ItemsMenu(){
+        System.out.println("---------------------\nItems Menu\n---------------------");
+        System.out.println("Select a menu option: \n1. New Item\n2. Remove Item\n3. Modify Price\n4. Print Item Info\n5. Main Menu \n6. Quit");
+        System.out.print("Enter your selection: ");
+        Scanner scan = new Scanner(System.in);
+        int option = scan.nextInt();
+        ListIterator<Item> iIter = items.listIterator();
+        switch(option){
+            case 1: //new item
+                System.out.println("Enter the item's name: ");
+                String itemName = scan.next();
+                System.out.println("Enter item number: ");
+                int itemNum = scan.nextInt();
+                System.out.println("Enter the item cost: ");
+                double itemCost = scan.nextDouble();
+                Item newI = new Item(itemName,itemCost, itemNum);
+                items.add(newI);
+                ItemsMenu();
+                break;
+                
+            case 2: //remove item
+                System.out.print("item's name: ");
+                String removeThisOne = scan.next();
+                //found = item exists
+                boolean found = false;
+                while(iIter.hasNext()){
+                   //variables to get specific information about the item
+                   Item item_i = iIter.next();
+                   String Ename = item_i.getName(); 
+                       if (removeThisOne.equals(Ename)){ //if item is found, remove
+                           found = true;
+                           iIter.remove();
+                       }
+                }
+                if (found == false){ //if no match is found, let the user know
+                    System.out.println("The Item "+removeThisOne+" does not exist.");
+                }
+                else{
+                    System.out.println("The Item " + removeThisOne+ " has been successfully removed.");
+                }
+                ItemsMenu();
+                break;
+                
+            case 3: //modify price
+                System.out.print("Enter the item's name: ");
+                String modifyThisOne = scan.next();
+                //found = item exists
+                boolean Modfound = false;
+                //iterate through array, see if the item exists
+                while(iIter.hasNext()){
+                   //variables to get specific information about the item at that index
+                   Item item_i = iIter.next(); 
+                   String Ename = item_i.getName(); 
+                       if (modifyThisOne.equals(Ename)){ 
+                           Modfound = true;
+                           double newPrice = scan.nextDouble();
+                           item_i.setCost(newPrice);
+                           }
+                       }
+                if (Modfound == false){ //if no match is found, let the user know
+                    System.out.println("The Item "+modifyThisOne+" does not exist.");
+                }
+                else{
+                    System.out.println("The item " + modifyThisOne + " has had it's price updated.");
+                }
+                ItemsMenu();
+                break;
+                
+            case 4: //print item info
+                System.out.print("Enter the item's name: ");
+                String printThisOne = scan.next();
+                //found = item exists
+                boolean printfound = false;
+                //iterate through array, see if the item the user entered exists
+                while(iIter.hasNext()){
+                   //variables to get specific information about the Course at that index
+                   Item item_i = iIter.next();
+                   String Ename = item_i.getName(); 
+                       if (printThisOne.equals(Ename)){ //if item is found, print
+                           printfound = true;
+                           System.out.println("The item's name is: "+item_i.getName());
+                           System.out.println("The item's number is: "+item_i.getNumber());
+                           System.out.println("The item's cost is: $"+item_i.getCost());
+                       }
+                }
+                if (printfound == false){ //if no match is found, let the user know
+                    System.out.println("The Item "+printThisOne+" does not exist.");
+                }
+                ItemsMenu();
+                break;
+                
+            case 5: 
+                Menu();
+                break;
+                
+            case 6: 
+                System.out.println("Bye.");
+                break;
+                
+            default: 
+                System.out.println("Please enter a valid menu option: ");
+                CustomerMenu();
+        }
+    }
+    
     public static void SaleMenu(){
         System.out.println("---------------------\nNew Sale\n---------------------");
         System.out.println("Select a menu option: \n1. Add Item\n2. Remove Item\n3. Cancel Sale\n4. Print Receipt\n5. Main Menu \n6. Quit");
         System.out.print("Enter your selection: ");
         Scanner scan = new Scanner(System.in);
         int option = scan.nextInt();
+        ListIterator<Item> sIter = newSale.order.listIterator();
         switch(option){
-            case 1:
+            case 1: //add item
+                System.out.println("Enter the item's name: ");
+                String addThisOne = scan.next();
+                //found = item exists
+                boolean found = false;
+                for(int i=0; i<items.size(); i++){
+                   //variables to get specific information about the item
+                   Item item_i = items.get(i);
+                   String Ename = item_i.getName(); 
+                       if (addThisOne.equals(Ename)){ //if item is found, add
+                           found = true;
+                           sIter.add(item_i);
+                       }
+                }
+                if (found == false){ //if no match is found, let the user know
+                    System.out.println("The Item "+addThisOne+" does not exist.");
+                }
                 SaleMenu();
                 break;
-            case 2: 
+            case 2: //remove item
+                System.out.println("Enter the item's name: ");
+                String removeThisOne = scan.next();
+                //found = item exists
+                boolean removeFound = false;
+                while(sIter.hasNext()){
+                   //variables to get specific information about the item
+                   Item item_i = sIter.next(); 
+                   String Ename = item_i.getName(); 
+                       if (removeThisOne.equals(Ename)){ //if item is found, remove
+                           removeFound = true;
+                           sIter.remove();
+                       }
+                }
+                if (removeFound == false){ //if no match is found, let the user know
+                    System.out.println("The Item "+removeThisOne+" does not exist or is not part of this order.");
+                }
                 SaleMenu();
                 break;
-            case 3: 
+            case 3: //cancel sale
+                System.out.println("Are you sure you want to cancel this sale? \nThis will remove all items in the sale(y/n): ");
+                char yesno = scan.next().charAt(0);
+                switch (yesno) {
+                    case 'y' -> newSale.order.clear();
+                    case 'n' -> System.out.println("Your sale will not be cancelled. ");
+                    default -> System.out.println("Invalid character entered: "+yesno+" . Your sale will not be cancelled.");
+                }
                 SaleMenu();
                 break;
-            case 4: 
+
+            case 4: //print receipt
+                System.out.println("Item Name | Item Number | Item Cost");
+                while(sIter.hasNext()){
+                   //variables to get specific information about the item
+                   Item item_i = sIter.next();
+                   String eName = item_i.getName();
+                   int eNum = item_i.getNumber();
+                   double eCost = item_i.getCost();
+                   System.out.println(eName+"   |   "+eNum+"   |   "+eCost);
+                }
+                System.out.println("Is this customer a member? (true/false):");
+                boolean mem = scan.nextBoolean();
+                System.out.println("Total Cost: "+newSale.getTotalCost(mem));
+                newSale.order.clear();
                 SaleMenu();
                 break;
-            case 5: 
+            case 5: //main menu
                 Menu();
                 break;
-            case 6: 
+            case 6: //quit
                 System.out.println("Bye.");
                 break;
             default: 
