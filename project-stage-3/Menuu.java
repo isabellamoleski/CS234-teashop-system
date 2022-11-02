@@ -3,6 +3,7 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 public class Menuu {
     private static ArrayList<Employee> employees = new ArrayList<>();
+    private static ArrayList<Manager> manages = new ArrayList<>();
     private static LinkedList<Customer> customers = new LinkedList<>();
     private static LinkedList<Item> items = new LinkedList<>();
     private static Sale newSale = new Sale();
