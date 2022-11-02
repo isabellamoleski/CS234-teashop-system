@@ -23,6 +23,12 @@ public class Employee {
         this.wage = wage;
         timeWorked = 0;
     }
+    public Employee(String name, int age, double wage, double timeWorked){
+        this.name = name;
+        this.age = age;
+        this.wage = wage;
+        this.timeWorked = timeWorked;
+    }
     // Get
     public String getName(){
         return name;
@@ -46,7 +52,7 @@ public class Employee {
     public void setWage(double wage){
         this.wage = wage;
     }
-    public void setTimeWorked(){
+    public void setTimeWorked(double timeWorked){
         this.timeWorked = timeWorked;
     }
         public double getPay()
