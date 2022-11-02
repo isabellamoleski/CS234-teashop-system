@@ -134,6 +134,89 @@ public class Menuu {
         }
     }
     
+     public static void ManagerMenu(){
+        System.out.println("---------------------\nManagment menu\n---------------------");
+        System.out.println("Select a menu option: \n1. Add Employee\n2. Remove Employee\n3. Give Raise\n4. Expenses\n5. Main Menu \n6. Quit");
+        System.out.print("Enter your selection: ");
+          Scanner scan = new Scanner(System.in);
+        int option = scan.nextInt();
+        switch(option){
+            case 1: //Add employee
+                System.out.println("Enter the Employee's name: ");
+                String employeeName = scan.next();
+                System.out.println("Enter the Employee's age: ");
+                int employeeAge = scan.nextInt();
+                Employee newE = new Employee(employeeName,employeeAge);
+                employees.add(newE);
+                ManagerMenu();
+                break;
+            case 2: //Remove employee
+                System.out.print("Enter the employee's name: ");
+                String removeThisOne = scan.next();
+                //found = employee exists
+                boolean found = false;
+                //iterate through array, see if the employee name the user entered exists
+                for (int i = 0; i<employees.size();i++){
+                   //variables to get specific information about the employee at that index
+                   Employee emp_i = employees.get(i); 
+                   String Ename = emp_i.getName(); 
+                       if (removeThisOne.equals(Ename)){ //if employee is found, remove
+                           found = true;
+                           employees.remove(i);
+                       }
+                }
+                if (found == false){ //if no match is found, let the user know
+                    System.out.println("The Employee "+removeThisOne+" does not exist.");
+                }
+                else{
+                    System.out.println("The Employee " + removeThisOne+ " has been successfully removed.");
+                }
+                ManagerMenu();
+                break;
+            case 3: //Give Raise
+                /* System.out.print("Enter the employees name: ");
+                String modifyThisOne = scan.next();
+                //found = employee exists
+                boolean Modfound = false;
+                //iterate through array, see if the employee name the user entered exists
+                for (int i = 0; i<employees.size();i++){
+                   //variables to get specific information about the employee at that index
+                   Manager emp = manages.get(i); 
+                   String Ename = emp.getName(); 
+                       if (modifyThisOne.equals(Ename)){ //if employee is found, remove
+                           Modfound = true;
+                           Double wage = scan.nextDouble();
+                           emp.giveRaise(emp);
+                            
+                           
+                           }
+                       }
+                if (Modfound == false){ //if no match is found, let the user know
+                    System.out.println("The employee "+modifyThisOne+" does not exist.");
+                }
+                else{
+                    System.out.println("The employee " + modifyThisOne + "raise has been added.");
+                } */
+                ManagerMenu();
+                break;
+            case 4: //Expenses
+                System.out.print("Enter the amount of expenses: ");
+                double expenses = scan.nextDouble();
+                //Manager.setExpenses();
+                ManagerMenu();
+                break;
+            case 5: 
+                Menu();
+                break;
+            case 6: 
+                System.out.println("Bye.");
+                break;
+            default: 
+                System.out.println("Please enter a valid menu option: ");
+                ManagerMenu();
+        }
+    }
+    
     public static void CustomerMenu(){
         System.out.println("---------------------\nCustomer Menu\n---------------------");
         System.out.println("Select a menu option: \n1. New Customer\n2. Remove Customer\n3. Modify Customer Info\n4. Print Customer Info\n5. Main Menu \n6. Quit");
