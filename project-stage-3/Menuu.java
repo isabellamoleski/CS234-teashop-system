@@ -97,8 +97,8 @@ public class Menuu {
                        if (modifyThisOne.equals(Ename)){ //if employee is found, remove
                            Modfound = true;
                            System.out.println("Enter time worked: ");
-                           Double timeWorked = scan.nextDouble();
-                           
+                           Double newTimeWorked = scan.nextDouble();
+                           emp.setTimeWorked(newTimeWorked);
                            }
                        }
                 if (Modfound == false){ //if no match is found, let the user know
