@@ -48,7 +48,7 @@ public class Menuu {
                 EmployeeMenu();
                 break;
             case 2: 
-                //ManagerMenu();
+                ManagerMenu();
                 break;
             case 3: 
                 CustomerMenu();
