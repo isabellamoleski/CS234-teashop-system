@@ -7,6 +7,11 @@ public class Menuu {
     private static Sale newSale = new Sale();
     
     public static void main(String[] args) {
+        //dummy employee info
+         Employee stuart = new Employee("Stuart", 18, 15,20);
+         employees.add(stuart);
+         Employee barney = new Employee("Barney", 26, 16, 41);
+         employees.add(barney);
         //dummy customer info
         Customer mary = new Customer("Mary", 0001, false);
         customers.add(mary);
@@ -37,7 +42,7 @@ public class Menuu {
         int option = scan.nextInt();
         switch(option){
             case 1:
-                //EmployeeMenu();
+                EmployeeMenu();
                 break;
             case 2: 
                 //ManagerMenu();
@@ -61,6 +66,70 @@ public class Menuu {
                 System.out.println("Please select a valid menu option: ");
                 Menu();
                 break;
+        }
+    }
+    
+    public static void EmployeeMenu(){
+        System.out.println("---------------------\nEmployee menu\n---------------------");
+        System.out.println("Select a menu option: \n1. List of Employees\n2. Employee enter timeworked\n3. Employee timeworked\n4. Employee Pay\n5. Main Menu \n6. Quit");
+        System.out.print("Enter your selection: ");
+        Scanner scan = new Scanner(System.in);
+        int option = scan.nextInt();
+        switch(option){
+            case 1: //List out Employees and their information
+               for( Employee newE: employees){
+                   System.out.println("Employee: "+newE.getName()+ ", "+newE.getAge()+ ", $" + newE.getWage()+" an hour");
+               } 
+                EmployeeMenu();
+            case 2: //Enter the employees time worked
+                 System.out.print("Enter the employees name: ");
+                String modifyThisOne = scan.next();
+                //found = employee exists
+                boolean Modfound = false;
+                //iterate through array, see if the employee name the user entered exists
+                for (int i = 0; i<employees.size();i++){
+                   //variables to get specific information about the employee at that index
+                   Employee emp = employees.get(i); 
+                   String Ename = emp.getName(); 
+                       if (modifyThisOne.equals(Ename)){ //if employee is found, remove
+                           Modfound = true;
+                           System.out.println("Enter time worked: ");
+                           Double timeWorked = scan.nextDouble();
+                           
+                           }
+                       }
+                if (Modfound == false){ //if no match is found, let the user know
+                    System.out.println("The employee "+modifyThisOne+" does not exist.");
+                }
+                else{
+                    System.out.println("The employee " + modifyThisOne + "time worked has been added.");
+                }
+                EmployeeMenu();
+                break;
+            case 3: //Print the time worked for all employees
+                for (int i = 0; i<employees.size();i++){
+                    Employee emp = employees.get(i);
+                   System.out.println("Name: " +emp.getName()+", "+emp.getTimeWorked()+" hours");
+                }
+                EmployeeMenu();
+                
+                break;
+            case 4: //Print out the amount of pay for an employee
+                for( Employee newE: employees){
+                    //Employee emp = newE.get();
+                   System.out.println("Name: "+newE.getName()+" $"+newE.getPay());
+                }
+                EmployeeMenu();
+                break;
+            case 5: 
+                Menu();
+                break;
+            case 6: 
+                System.out.println("Bye.");
+                break;
+            default: 
+                System.out.println("Please enter a valid menu option: ");
+                SaleMenu();
         }
     }
     
