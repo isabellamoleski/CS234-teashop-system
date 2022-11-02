@@ -243,11 +243,11 @@ public class Menuu {
                 String removeThisOne = scan.next();
                 //found = customer exists
                 boolean found = false;
-                //iterate through array, see if the employee name the user entered exists
+                //iterate through array, see if the customer name the user entered exists
                 while (cIter.hasNext()){
                    Customer customer_i = cIter.next(); 
                    String Ename = customer_i.getName(); 
-                       if (removeThisOne.equals(Ename)){ //if employee is found, remove
+                       if (removeThisOne.equals(Ename)){ //if customer is found, remove
                            found = true;
                            cIter.remove();
                        }
@@ -268,10 +268,10 @@ public class Menuu {
                 boolean Modfound = false;
                 //iterate through array, see if the customer name the user entered exists
                 while (cIter.hasNext()){
-                   //variables to get specific information about the Course at that index
+                   //variables to get specific information about the customer at that index
                    Customer customer_i = cIter.next(); 
                    String Ename = customer_i.getName(); 
-                       if (modifyThisOne.equals(Ename)){ //if employee is found, remove
+                       if (modifyThisOne.equals(Ename)){ //if customer is found, modify
                            Modfound = true;
                            System.out.println("Enter an updated name: ");
                            String nName = scan.next();
@@ -313,12 +313,12 @@ public class Menuu {
                 String printThisOne = scan.next();
                 //found = customer exists
                 boolean printfound = false;
-                //iterate through array, see if the employee name the user entered exists
+                //iterate through array, see if the customer name the user entered exists
                 while (cIter.hasNext()){
-                   //variables to get specific information about the Course at that index
+                   //variables to get specific information about the customer at that index
                    Customer customer_i = cIter.next();  
                    String Ename = customer_i.getName(); 
-                       if (printThisOne.equals(Ename)){ //if employee is found, remove
+                       if (printThisOne.equals(Ename)){ //if customer is found, print
                            printfound = true;
                            System.out.println("The customer's name is: "+customer_i.getName());
                            System.out.println("The customer's ID is: "+customer_i.getID());
@@ -425,7 +425,7 @@ public class Menuu {
                 boolean printfound = false;
                 //iterate through array, see if the item the user entered exists
                 while(iIter.hasNext()){
-                   //variables to get specific information about the Course at that index
+                   //variables to get specific information about the item at that index
                    Item item_i = iIter.next();
                    String Ename = item_i.getName(); 
                        if (printThisOne.equals(Ename)){ //if item is found, print
