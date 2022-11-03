@@ -546,5 +546,33 @@ public class Menuu {
                 SaleMenu();
         }
     }
+    
+    public static void ReportsMenu(){
+     System.out.println("---------------------\nReport Menu \n---------------------");
+        System.out.println("Select a menu option: \n1. Total Profit report\n2. Total Expenses Report\n3. Main Menu \n4. Quit" );
+        System.out.print("Enter your selection: ");
+        Scanner scan = new Scanner(System.in);
+        int option = scan.nextInt();
+        switch(option){
+            case 1: //report of total profit
+                //System.out.print(Financial.getTotalProfit());
+                ReportsMenu();
+                break;
+            case 2: //Report on total expenses
+                //System.out.print(Financial.getTotalExpenses());
+                ReportsMenu();
+                break;
+            case 3: //Main menu
+                Menu();
+                break;
+            case 4: 
+                System.out.println("Bye");
+                break;
+            default: 
+                System.out.println("Please select a valid menu option: ");
+                Menu();
+                break;
+        }
+    }
 
 }
