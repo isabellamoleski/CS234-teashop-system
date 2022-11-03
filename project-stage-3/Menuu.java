@@ -4,17 +4,23 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 public class Menuu {
     private static ArrayList<Employee> employees = new ArrayList<>();
-    private static ArrayList<Manager> manages = new ArrayList<>();
+    private static ArrayList<Manager> managers = new ArrayList<>();
     private static LinkedList<Customer> customers = new LinkedList<>();
     private static LinkedList<Item> items = new LinkedList<>();
     private static Sale newSale = new Sale();
     
     public static void main(String[] args) {
         //dummy employee info
-         Employee stuart = new Employee("Stuart", 18, 15,20);
-         employees.add(stuart);
-         Employee barney = new Employee("Barney", 26, 16, 41);
-         employees.add(barney);
+        Employee stuart = new Employee("Stuart", 18, 15,20);
+        employees.add(stuart);
+        Employee barney = new Employee("Barney", 26, 16, 41);
+        employees.add(barney);
+        Employee mark = new Employee("Mark", 34, 15, 42);
+        employees.add(mark);
+        Manager m_mark = new Manager(mark);
+        managers.add(m_mark);
+        m_mark.addEmployee(stuart);
+        m_mark.addEmployee(barney);
         //dummy customer info
         Customer mary = new Customer("Mary", 0001, false);
         customers.add(mary);
@@ -140,8 +146,10 @@ public class Menuu {
         System.out.println("---------------------\nManagment menu\n---------------------");
         System.out.println("Select a menu option: \n1. Add Employee\n2. Remove Employee\n3. Give Raise\n4. Expenses\n5. Main Menu \n6. Quit");
         System.out.print("Enter your selection: ");
-          Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         int option = scan.nextInt();
+        //this sets thisManager to Mark, who is at index 0 in the managers arraylist. could ask for user input for which manager it was if there are ever multiple
+        Manager thisManager = managers.get(0);
         switch(option){
             case 1: //Add employee
                 System.out.println("Enter the Employee's name: ");
@@ -176,20 +184,18 @@ public class Menuu {
                 ManagerMenu();
                 break;
             case 3: //Give Raise
-                /* System.out.print("Enter the employees name: ");
+                System.out.print("Enter the employees name: ");
                 String modifyThisOne = scan.next();
                 //found = employee exists
                 boolean Modfound = false;
-                //iterate through array, see if the employee name the user entered exists
-                for (int i = 0; i<employees.size();i++){
+                //iterate through the 'manages' arraylist within the manager object you want - in this case mark's
+                for (int i = 0; i<thisManager.manages.size();i++){
                    //variables to get specific information about the employee at that index
-                   Manager emp = manages.get(i); 
+                   Employee emp = thisManager.manages.get(i); 
                    String Ename = emp.getName(); 
-                       if (modifyThisOne.equals(Ename)){ //if employee is found, remove
+                       if (modifyThisOne.equals(Ename)){ //if employee is found, give 'em a raise
                            Modfound = true;
-                           Double wage = scan.nextDouble();
-                           emp.giveRaise(emp);
-                            
+                           thisManager.giveRaise(emp);
                            
                            }
                        }
@@ -197,8 +203,8 @@ public class Menuu {
                     System.out.println("The employee "+modifyThisOne+" does not exist.");
                 }
                 else{
-                    System.out.println("The employee " + modifyThisOne + "raise has been added.");
-                } */
+                    System.out.println("The employee " + modifyThisOne + " raise has been added.");
+                } 
                 ManagerMenu();
                 break;
             case 4: //Expenses
