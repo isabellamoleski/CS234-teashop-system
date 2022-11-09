@@ -157,7 +157,8 @@ public class Menuu {
                 System.out.println("Enter the Employee's age: ");
                 int employeeAge = scan.nextInt();
                 Employee newE = new Employee(employeeName,employeeAge);
-                employees.add(newE);
+               employees.add(newE);
+                thisManager.addEmployee(newE);
                 ManagerMenu();
                 break;
             case 2: //Remove employee
@@ -173,6 +174,7 @@ public class Menuu {
                        if (removeThisOne.equals(Ename)){ //if employee is found, remove
                            found = true;
                            employees.remove(i);
+                           thisManager.removeEmployee(emp_i);;
                        }
                 }
                 if (found == false){ //if no match is found, let the user know
