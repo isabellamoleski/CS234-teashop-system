@@ -93,7 +93,8 @@ public class Menuu {
                for( Employee newE: employees){
                    System.out.println("Employee: "+newE.getName()+ ", "+newE.getAge()+ ", $" + newE.getWage()+" an hour");
                } 
-                EmployeeMenu();
+               EmployeeMenu();
+               break;
             case 2: //Enter the employees time worked
                 System.out.print("Enter the employees name: ");
                 String modifyThisOne = scan.next();
@@ -564,7 +565,7 @@ public class Menuu {
             case 1: //report of total profit
                 System.out.println("Total Profits Report \n--------------------");
                 ArrayList<Double> allSales = new ArrayList<>();
-                allSales = Financial.getTotalProfit();
+                allSales.equals(Financial.getTotalProfit());
                 double totalProf=0;
                 for(int i=0;i<allSales.size();i++){ //prints all sales and how much they were
                     System.out.println("Sale of: $"+allSales.get(i));
