@@ -1,19 +1,18 @@
 import java.util.ArrayList;
 public class Financial {
-    ArrayList<Employee> Pay;
-    private double total;
+ArrayList<Employee> Pay;
+    private static ArrayList<Double> totalProfit; 
     private double totalExpenses;
     // Constructor
     public Financial(){
-        
+        totalProfit.clear();
+    }
+    public void addToTotal(double d){
+        totalProfit.add(d);
     }
     //getter
-    public double getTotalProfit(ArrayList<Sale> sales, boolean b){
-        for(int i = 0; i<sales.size();i++){
-            Sale sale_i = sales.get(i);
-            total =+ sale_i.getTotalCost(b);
-        }
-        return total;
+    public static ArrayList getTotalProfit(){
+        return totalProfit;
     }
     public double getTotalExpenses(ArrayList<Employee> Pay){
         Pay.equals(Pay);
