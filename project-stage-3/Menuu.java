@@ -16,7 +16,7 @@ public class Menuu {
         employees.add(stuart);
         Employee barney = new Employee("Barney", 26, 16, 41);
         employees.add(barney);
-        Employee mark = new Employee("Mark", 34, 15, 42);
+        Employee mark = new Employee("Mark", 34, 19, 42);
         employees.add(mark);
         Manager m_mark = new Manager(mark);
         managers.add(m_mark);
