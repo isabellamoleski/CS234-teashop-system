@@ -572,7 +572,12 @@ public class Menuu {
                 ReportsMenu();
                 break;
             case 2: //Report on total expenses
-                //System.out.print(Financial.getTotalExpenses());
+                System.out.println("Total Expenses Report \n--------------------");
+                for(int i=0;i<employees.size();i++){
+                    Employee employee_i = employees.get(i);
+                    System.out.println("The employee "+employee_i.getName()+" worked for "+employee_i.getTimeWorked()+" hours at $"+employee_i.getWage()+" per hour, and earned "+employee_i.getPay());
+                }
+                System.out.println("The total expenses are: "+teaShop.getTotalExpenses(employees));
                 ReportsMenu();
                 break;
             case 3: //Main menu
