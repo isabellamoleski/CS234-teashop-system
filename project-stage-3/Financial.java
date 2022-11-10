@@ -1,11 +1,10 @@
 import java.util.ArrayList;
 public class Financial {
 ArrayList<Employee> Pay;
-    private static ArrayList<Double> totalProfit; 
-    private double totalExpenses;
+    private static ArrayList<Double> totalProfit = new ArrayList<>(); 
+    private static double totalExpenses;
     // Constructor
     public Financial(){
-        totalProfit.clear();
     }
     public void addToTotal(double d){
         totalProfit.add(d);
@@ -14,15 +13,12 @@ ArrayList<Employee> Pay;
     public static ArrayList getTotalProfit(){
         return totalProfit;
     }
-    public double getTotalExpenses(ArrayList<Employee> Pay){
-        Pay.equals(Pay);
+    public static double getTotalExpenses(ArrayList<Employee> Pay){
         for(int i = 0; i<Pay.size();i++){
             Employee aPay = Pay.get(i);
             double employee_timeWorked = aPay.getTimeWorked();
-            totalExpenses =+ aPay.getPay();
-            
+            totalExpenses = totalExpenses+ aPay.getPay();
         }
-        totalExpenses = 0;
         return totalExpenses;
     }
 }
