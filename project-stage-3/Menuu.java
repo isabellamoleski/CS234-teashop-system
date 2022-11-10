@@ -40,6 +40,9 @@ public class Menuu {
         items.add(sugarPack);
         Item milk = new Item("Milk", 0.20, 0212);
         items.add(milk);
+        //dummy sale information
+        newSale.order.add(milk);newSale.order.add(smallTea);teaShop.addToTotal(newSale.getTotalCost(true)); newSale.order.clear();
+        newSale.order.add(largeTea);newSale.order.add(smallTea);newSale.order.add(sugarPack);teaShop.addToTotal(newSale.getTotalCost(false)); newSale.order.clear();
         //call main menu
         Menu();
     }
