@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public class Financial {
-ArrayList<Employee> Pay;
+    ArrayList<Employee> Pay;
     private static ArrayList<Double> totalProfit = new ArrayList<>(); 
     private static double totalExpenses;
     // Constructor
