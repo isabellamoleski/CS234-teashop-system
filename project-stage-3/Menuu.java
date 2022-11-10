@@ -95,7 +95,7 @@ public class Menuu {
                } 
                 EmployeeMenu();
             case 2: //Enter the employees time worked
-                 System.out.print("Enter the employees name: ");
+                System.out.print("Enter the employees name: ");
                 String modifyThisOne = scan.next();
                 //found = employee exists
                 boolean Modfound = false;
@@ -564,7 +564,7 @@ public class Menuu {
             case 1: //report of total profit
                 System.out.println("Total Profits Report \n--------------------");
                 ArrayList<Double> allSales = new ArrayList<>();
-                allSales = teaShop.getTotalProfit();
+                allSales = Financial.getTotalProfit();
                 double totalProf=0;
                 for(int i=0;i<allSales.size();i++){ //prints all sales and how much they were
                     System.out.println("Sale of: $"+allSales.get(i));
@@ -580,7 +580,7 @@ public class Menuu {
                     Employee employee_i = employees.get(i);
                     System.out.println("The employee "+employee_i.getName()+" worked for "+employee_i.getTimeWorked()+" hours at $"+employee_i.getWage()+" per hour, and earned "+employee_i.getPay());
                 }
-                System.out.println("The total expenses are: "+teaShop.getTotalExpenses(employees));
+                System.out.println("The total expenses are: "+Financial.getTotalExpenses(employees));
                 ReportsMenu();
                 break;
             case 3: //Main menu
