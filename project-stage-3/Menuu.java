@@ -16,7 +16,7 @@ public class Menuu {
         employees.add(stuart);
         Employee barney = new Employee("Barney", 26, 16, 41);
         employees.add(barney);
-        Employee mark = new Employee("Mark", 34, 19, 42);
+        Employee mark = new Employee("Mark", 34, 15, 42);
         employees.add(mark);
         Manager m_mark = new Manager(mark);
         managers.add(m_mark);
@@ -179,7 +179,7 @@ public class Menuu {
                        if (removeThisOne.equals(Ename)){ //if employee is found, remove
                            found = true;
                            employees.remove(i);
-                           thisManager.removeEmployee(emp_i);;
+                           thisManager.removeEmployee(emp_i);
                        }
                 }
                 if (found == false){ //if no match is found, let the user know
@@ -217,7 +217,7 @@ public class Menuu {
             case 4: //Expenses
                 System.out.print("Enter the amount of expenses: ");
                 double expenses = scan.nextDouble();
-                //Manager.setExpenses();
+                thisManager.setExpenses(expenses);
                 ManagerMenu();
                 break;
             case 5: 
