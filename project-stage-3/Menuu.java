@@ -8,7 +8,7 @@ public class Menuu {
     private static LinkedList<Customer> customers = new LinkedList<>();
     private static LinkedList<Item> items = new LinkedList<>();
     private static Sale newSale = new Sale();
-    private static Financial teaShop = new Financial();
+    private static ArrayList<Double> allSales =  new ArrayList<>();
     
     public static void main(String[] args) {
         //dummy employee info
@@ -41,8 +41,8 @@ public class Menuu {
         Item milk = new Item("Milk", 0.20, 0212);
         items.add(milk);
         //dummy sale information
-        newSale.order.add(milk);newSale.order.add(smallTea);teaShop.addToTotal(newSale.getTotalCost(true)); newSale.order.clear();
-        newSale.order.add(largeTea);newSale.order.add(smallTea);newSale.order.add(sugarPack);teaShop.addToTotal(newSale.getTotalCost(false)); newSale.order.clear();
+        newSale.order.add(milk);newSale.order.add(smallTea);allSales.add(newSale.getTotalCost(true)); newSale.order.clear();
+        newSale.order.add(largeTea);newSale.order.add(smallTea);newSale.order.add(sugarPack);allSales.add(newSale.getTotalCost(false)); newSale.order.clear();
         //call main menu
         Menu();
     }
@@ -540,7 +540,7 @@ public class Menuu {
                 System.out.println("Is this customer a member? (true/false):");
                 boolean mem = scan.nextBoolean();
                 System.out.println("Total Cost: "+newSale.getTotalCost(mem));
-                teaShop.addToTotal(newSale.getTotalCost(mem));
+                allSales.add(newSale.getTotalCost(mem));
                 newSale.order.clear();
                 SaleMenu();
                 break;
@@ -565,15 +565,7 @@ public class Menuu {
         switch(option){
             case 1: //report of total profit
                 System.out.println("Total Profits Report \n--------------------");
-                ArrayList<Double> allSales = new ArrayList<>();
-                allSales.equals(Financial.getTotalProfit());
-                double totalProf=0;
-                for(int i=0;i<allSales.size();i++){ //prints all sales and how much they were
-                    System.out.println("Sale of: $"+allSales.get(i));
-                    totalProf=totalProf+allSales.get(i);
-                }
-                //prints total profit
-                System.out.println("With a total profit of: "+totalProf);
+                Financial.getTotalProfit(allSales);
                 ReportsMenu();
                 break;
             case 2: //Report on total expenses
