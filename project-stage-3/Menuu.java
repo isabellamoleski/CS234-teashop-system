@@ -408,7 +408,7 @@ public class Menuu {
                 break;
                 
             case 3: //modify price
-                System.out.print("Enter the item's name: ");
+                System.out.println("Enter the item's name: ");
                 String modifyThisOne = scan.next();
                 //found = item exists
                 boolean Modfound = false;
@@ -419,6 +419,7 @@ public class Menuu {
                    String Ename = item_i.getName(); 
                        if (modifyThisOne.equals(Ename)){ 
                            Modfound = true;
+                           System.out.println("Enter the item's updated price: ");
                            double newPrice = scan.nextDouble();
                            item_i.setCost(newPrice);
                            }
