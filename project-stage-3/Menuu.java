@@ -385,20 +385,20 @@ public class Menuu {
                 break;
                 
             case 2: //remove item
-                System.out.print("item's name: ");
+                System.out.println("Enter the item's name: ");
                 String removeThisOne = scan.next();
                 //found = item exists
-                boolean found = false;
+                boolean removeFound = false;
                 while(iIter.hasNext()){
                    //variables to get specific information about the item
                    Item item_i = iIter.next();
                    String Ename = item_i.getName(); 
                        if (removeThisOne.equals(Ename)){ //if item is found, remove
-                           found = true;
+                           removeFound = true;
                            iIter.remove();
                        }
                 }
-                if (found == false){ //if no match is found, let the user know
+                if (removeFound == false){ //if no match is found, let the user know
                     System.out.println("The Item "+removeThisOne+" does not exist.");
                 }
                 else{
