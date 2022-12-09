@@ -11,17 +11,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ListIterator;
 public class Financial {
-    ArrayList<Employee> Pay;
-    private static ArrayList expenses;
     private static double totalExpenses;
     private static double totalProfit;
     private static ArrayList<Employee> employees = new ArrayList<>();
-    public static ListIterator<Employee> eIter = employees.listIterator();
-    private static ArrayList<Manager> managers = new ArrayList<>();
     private static LinkedList<Customer> customers = new LinkedList<>();
-    public static ListIterator<Customer> cIter = customers.listIterator();
     private static LinkedList<Item> items = new LinkedList<>();
-    public static ListIterator<Item> iIter = items.listIterator();
     public static Sale newSale = new Sale();
     public static ArrayList<Double> allSales =  new ArrayList<>();
     // Constructor
